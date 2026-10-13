@@ -10,6 +10,22 @@ My goal is to build a practical tool that identifies what needs attention and ma
 
 ## How it works
 
+## Architecture
+
+```mermaid
+flowchart TD
+    A[Incoming Email] --> B[n8n Workflow]
+    B --> C[AI Classification]
+    C --> D[Output Validation]
+    D --> E{Decision Engine}
+    E -->|Create Task| F[Fastify REST API]
+    E -->|Ignore or Review| G[Workflow Outcome]
+    F --> H[(PostgreSQL)]
+    I[Assistant Request] --> J[Intent Router]
+    J --> F
+```
+
+
 TaskMail is being developed around a workflow that:
 
 - Receives and processes incoming emails.
